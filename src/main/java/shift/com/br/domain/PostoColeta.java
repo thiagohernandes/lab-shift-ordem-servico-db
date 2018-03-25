@@ -12,6 +12,12 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+/** 
+ * Classe PostoColeta
+ * @author Thiago Hernandes de Souza
+ * @since 24-03-2018
+ * */
+
 @Entity
 @Table(name="tbl_posto_coleta")
 @JsonInclude(Include.ALWAYS)
