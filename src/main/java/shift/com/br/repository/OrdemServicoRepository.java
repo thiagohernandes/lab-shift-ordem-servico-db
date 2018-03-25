@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import shift.com.br.domain.OrdemServico;
 
 /** 
- * Repository JPA - OrdemServico
+ * Repository JPA - Ordem de Serviço
  * @author Thiago Hernandes de Souza
  * @since 24-03-2018
  * */
