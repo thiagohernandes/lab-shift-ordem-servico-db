@@ -1,11 +1,14 @@
 package shift.com.br.domain;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -28,11 +31,27 @@ public class Paciente {
 	private Integer id;
 	@Column(name="nome")
 	private String nome;
-	@OneToOne(cascade = CascadeType.ALL)
+	@Column(name="endereco")
+	private String endereco;
+	@Column(name="sexo")
+	private String sexo;
+	@Column(name="data_nascimento")
+	private Date data_nascimento;
+	@OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "id_bairro")
 	private Bairro bairro;
 	
 	public Paciente() {
 		
+	}
+	
+	public Paciente(String nome, Bairro bairro, String endereco, 
+					String sexo, Date data_nascimento) {
+		this.nome = nome;
+		this.bairro = bairro;
+		this.endereco = endereco;
+		this.sexo = sexo;
+		this.data_nascimento = data_nascimento;
 	}
 
 	public Integer getId() {

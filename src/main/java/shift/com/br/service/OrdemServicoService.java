@@ -1,5 +1,6 @@
 package shift.com.br.service;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,9 +73,17 @@ public class OrdemServicoService {
 	 * @return lista com as ordens de serviço
 	 * @since 24-03-2018
 	 * */
-	public List<OrdemServicoDTO> consultaOrdensServico(int pageLimit, int pageNumber) throws NumberFormatException, ParseException{
+	public List<OrdemServicoDTO> consultaOrdensServico(Timestamp dataInicial, Timestamp dataFinal, String nomePaciente,
+													   String nomeConvenio, String nomePostoColeta, String nomeMedico,
+													   String nomeEspecialidade,int pageLimit, int pageNumber) 
+													   throws NumberFormatException, ParseException{
 		
-		List<Object> listaOrdensServico = ordemServicoRepository.consultaOrdensServico(pageLimit,pageNumber);
+		List<Object> listaOrdensServico = ordemServicoRepository.consultaOrdensServico(
+																	new UtilShift().timeStampToString(dataInicial),
+																	new UtilShift().timeStampToString(dataFinal),
+																	"%"+nomePaciente+"%","%"+nomeConvenio+"%",
+																	"%"+nomePostoColeta+"%","%"+nomeMedico+"%",
+																	"%"+nomeEspecialidade+"%",pageLimit,pageNumber);
 		List<OrdemServicoDTO> retornoConsulta = new ArrayList<>();
 		
 		listaOrdensServico.forEach(item->{

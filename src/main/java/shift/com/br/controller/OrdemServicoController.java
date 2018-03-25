@@ -1,9 +1,10 @@
 package shift.com.br.controller;
 
-import java.text.ParseException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.ParseException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,13 +21,13 @@ import shift.com.br.dto.OrdemServicoDTO;
 import shift.com.br.service.OrdemServicoService;
 
 /** 
- * REST Controller OrdemServico
+ * REST Controller Ordem de Serviço
  * @author Thiago Hernandes de Souza
  * @since 24-03-2018
  * */
 
 @RestController
-@RequestMapping("/api/ordem-servicos")
+@RequestMapping("/api/ordens-servico")
 public class OrdemServicoController {
 	
 	@Autowired
@@ -93,13 +95,23 @@ public class OrdemServicoController {
 	 * @param limite de registros na página
 	 * @param offset de registros
 	 * @return lista com as ordens de serviço
+	 * @throws java.text.ParseException 
 	 * @since 24-03-2018
 	 * */
-	@GetMapping(value="/todas/{pageLimit}/{pageNumber}")
-	public List<OrdemServicoDTO> todas(@PathVariable("pageLimit") int pageLimit, 
-									   @PathVariable("pageNumber") int pageNumber) throws NumberFormatException,
-																						  ParseException{
-		return ordemServicoService.consultaOrdensServico(pageLimit,pageNumber);
+	@GetMapping(value="/consulta/{pageLimit}/{pageNumber}")
+	public List<OrdemServicoDTO> consultaGenerica(@RequestParam("dataInicial") Timestamp dataInicial,
+												  @RequestParam("dataFinal") Timestamp dataFinal,
+												  @RequestParam("nomePaciente") String nomePaciente,
+												  @RequestParam("nomeConvenio") String nomeConvenio,
+												  @RequestParam("nomePostoColeta") String nomePostoColeta,
+												  @RequestParam("nomeMedico") String nomeMedico,
+												  @RequestParam("nomeEspecialidade") String nomeEspecialidade,
+												  @PathVariable("pageLimit") int pageLimit, 
+									   			  @PathVariable("pageNumber") int pageNumber
+									   			   ) throws NumberFormatException,ParseException, java.text.ParseException{
+
+		return ordemServicoService.consultaOrdensServico(dataInicial,dataFinal,nomePaciente,nomeConvenio,nomePostoColeta,
+				nomeMedico,nomeEspecialidade,pageLimit,pageNumber);
 	}
 	
 }

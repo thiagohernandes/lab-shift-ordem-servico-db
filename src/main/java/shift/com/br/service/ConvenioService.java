@@ -28,7 +28,7 @@ public class ConvenioService {
 	 * @return lista de convênios
 	 * @since 25-03-2018
 	 * */
-	public List<Convenio> todos() {
+	public List<Convenio> consulta() {
 		return convenioRepository.findAll();
 	}
 	

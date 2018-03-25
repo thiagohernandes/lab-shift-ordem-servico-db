@@ -3,6 +3,7 @@ package shift.com.br.util;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,6 +31,46 @@ public class UtilShift {
 	}
 	
 	/**
+	 * Conversão de obj string para Date
+	 * @author Thiago Hernandes de Souza
+	 * @since 25-03-2018
+	 * @param obj string
+	 * @return Date 
+	 * */
+	public Date stringObjToDate(String obj) throws ParseException {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	    Date parsedDate = dateFormat.parse(obj);
+	    return parsedDate;	    
+	}
+	
+	/**
+	 * Conversão de timestamp para string format yyyy-MM-dd HH:mm:ss
+	 * @author Thiago Hernandes de Souza
+	 * @since 25-03-2018
+	 * @param timestamp
+	 * @return Date 
+	 * */
+	public String timeStampToString(Timestamp dataHora) throws ParseException {
+		java.util.Date date = new java.util.Date(new Long(dataHora.getTime()));
+		String dateStr = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+	    return dateStr;	    
+	}
+	
+	/**
+	 * Conversão de string para timestamp format yyyy-MM-dd HH:mm:ss
+	 * @author Thiago Hernandes de Souza
+	 * @since 25-03-2018
+	 * @param string
+	 * @return timestamp
+	 * */
+	public Timestamp timeStampToString(String dataHora) throws ParseException {
+	    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date = dateFormat.parse(dataHora);
+		long time = date.getTime();
+		return new Timestamp(time);
+	}
+	
+	/**
 	 * Load de arquivo SQL noa path resources
 	 * @author Thiago Hernandes de Souza
 	 * @since 25-03-2018
@@ -53,5 +94,4 @@ public class UtilShift {
 		}
 		return result.toString();
 	}
-	
 }

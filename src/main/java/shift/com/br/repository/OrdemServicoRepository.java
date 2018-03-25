@@ -59,24 +59,24 @@ public interface OrdemServicoRepository extends JpaRepository<OrdemServico, Inte
 			"inner join tbl_cidade cic on cic.id = bac.id_cidade " + 
 			"where " + 
 			"	1 = 1 " + 
-		/*	"	and os.`data` between :dataInicial and :dataFinal " + 
-			"	and pa.nome like :nomePaciente " + 
-			"	and co.nome like :nomeConvenio " + 
-			"	and pc.nome like :nomePostoColeta " + 
-			"	and me.nome like :nomeMedico " + 
-			"	and es.nome like :nomeEspecialidade " + */
+			"	and os.`data` between :pDataInicial and :pDataFinal " + 
+			"	and pa.nome like :pNomePaciente " + 
+			"	and co.nome like :pNomeConvenio " + 
+			"	and pc.nome like :pNomePostoColeta " + 
+			"	and me.nome like :pNomeMedico " + 
+			"	and es.nome like :pNomeEspecialidade " + 
 			" order by " + 
 			"	os.`data` desc, " + 
 			"	pa.nome asc  " +
 			" limit :pageLimit offset :pageNumber", nativeQuery=true)
-	public List<Object> consultaOrdensServico(@Param("pageLimit") int pageLimit, 
+	public List<Object> consultaOrdensServico(@Param("pDataInicial") String dataInicial,
+											  @Param("pDataFinal") String dataFinal,
+											  @Param("pNomePaciente") String nomePaciente,
+											  @Param("pNomeConvenio") String nomeConvenio,
+											  @Param("pNomePostoColeta") String nomePostoColeta,
+											  @Param("pNomeMedico") String nomeMedico,
+											  @Param("pNomeEspecialidade") String nomeEspecialidade,
+											  @Param("pageLimit") int pageLimit, 
 										      @Param("pageNumber") int pageNumber);
 	
-	/*@Param("dataInicial") Timestamp dataInicial,
-    @Param("dataFinal") Timestamp dataFinal,
-    @Param("nomePaciente") String nomePaciente,
-    @Param("nomeConvenio") String nomeConvenio,
-    @Param("nomePostoColeta") String nomePostoColeta,
-    @Param("nomeMedico") String nomeMedico,
-    @Param("nomeEspecialidade") String nomeEspecialidade,*/
 }

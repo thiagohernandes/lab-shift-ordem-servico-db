@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -29,7 +30,9 @@ public class Bairro {
 	@Column(name="descricao")
 	private String descricao;
 	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_cidade")
 	private Cidade cidade;
+	
 	
 	public Bairro() {
 		
@@ -46,12 +49,6 @@ public class Bairro {
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-	public Cidade getCidade() {
-		return cidade;
-	}
-	public void setCidade(Cidade cidade) {
-		this.cidade = cidade;
 	}
 
 }
