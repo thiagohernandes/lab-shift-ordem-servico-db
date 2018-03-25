@@ -5,6 +5,12 @@ import java.sql.Timestamp;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+/** 
+ * Classe OrdemServicoDTO - Mapeamento da classe de consulta de ordens de serviço
+ * @author Thiago Hernandes de Souza
+ * @since 24-03-2018
+ * */
+
 @JsonInclude(Include.ALWAYS)
 public class OrdemServicoDTO {
 	
