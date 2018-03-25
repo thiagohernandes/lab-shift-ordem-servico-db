@@ -36,6 +36,11 @@ public class Medico {
 		
 	}
 	
+	public Medico(String nome, Especialidade especialidade) {
+		this.nome = nome;
+		this.especialidade = especialidade;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

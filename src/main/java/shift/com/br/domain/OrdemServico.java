@@ -46,6 +46,14 @@ public class OrdemServico {
 	public OrdemServico() {
 		
 	}
+	
+	public OrdemServico(Timestamp data, Paciente paciente, Convenio convenio, PostoColeta postoColeta, Medico medico) {
+		this.data = data;
+		this.paciente = paciente;
+		this.convenio = convenio;
+		this.postoColeta = postoColeta;
+		this.medico = medico;
+	}
 
 	public Integer getId() {
 		return id;

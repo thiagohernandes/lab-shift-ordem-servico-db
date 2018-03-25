@@ -35,6 +35,11 @@ public class PostoColeta {
 	public PostoColeta() {
 		
 	}
+	
+	public PostoColeta(String nome, Bairro bairro) {
+		this.nome = nome;
+		this.bairro = bairro;
+	}
 
 	public Integer getId() {
 		return id;

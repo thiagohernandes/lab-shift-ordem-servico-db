@@ -31,6 +31,10 @@ public class Convenio {
 	public Convenio() {
 		
 	}
+	
+	public Convenio(String nome) {
+		this.nome = nome;
+	}
 
 	public Integer getId() {
 		return id;
