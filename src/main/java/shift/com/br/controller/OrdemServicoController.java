@@ -32,28 +32,6 @@ public class OrdemServicoController {
 	OrdemServicoService ordemServicoService;
 	
 	/** 
-	 * Consulta/controller genérica de Ordens de Serviço
-	 * @author Thiago Hernandes de Souza
-	 * @param data inicial
-	 * @param data final
-	 * @param nome do paciente
-	 * @param nome do convênio
-	 * @param nome do posto de coleta
-	 * @param nome do médico
-	 * @param nome da especialidade
-	 * @param limite de registros na página
-	 * @param offset de registros
-	 * @return lista com as ordens de serviço
-	 * @since 24-03-2018
-	 * */
-	@GetMapping(value="/todas/{pageLimit}/{pageNumber}")
-	public List<OrdemServicoDTO> todas(@PathVariable("pageLimit") int pageLimit, 
-									   @PathVariable("pageNumber") int pageNumber) throws NumberFormatException,
-																						  ParseException{
-		return ordemServicoService.consultaOrdensServico(pageLimit,pageNumber);
-	}
-	
-	/** 
 	 * Salvar/persistir/controller OrdemServico
 	 * @author Thiago Hernandes de Souza
 	 * @param dados ordem de serviço
@@ -101,5 +79,27 @@ public class OrdemServicoController {
 	public void excluirFuncionario(@PathVariable("id") Integer id) {
 		ordemServicoService.excluir(id);
 	}
-
+	
+	/** 
+	 * Consulta/controller genérica de Ordens de Serviço
+	 * @author Thiago Hernandes de Souza
+	 * @param data inicial
+	 * @param data final
+	 * @param nome do paciente
+	 * @param nome do convênio
+	 * @param nome do posto de coleta
+	 * @param nome do médico
+	 * @param nome da especialidade
+	 * @param limite de registros na página
+	 * @param offset de registros
+	 * @return lista com as ordens de serviço
+	 * @since 24-03-2018
+	 * */
+	@GetMapping(value="/todas/{pageLimit}/{pageNumber}")
+	public List<OrdemServicoDTO> todas(@PathVariable("pageLimit") int pageLimit, 
+									   @PathVariable("pageNumber") int pageNumber) throws NumberFormatException,
+																						  ParseException{
+		return ordemServicoService.consultaOrdensServico(pageLimit,pageNumber);
+	}
+	
 }
