@@ -99,8 +99,8 @@ public class OrdemServicoController {
 	 * @since 24-03-2018
 	 * */
 	@GetMapping(value="/consulta/{pageLimit}/{pageNumber}")
-	public List<OrdemServicoDTO> consultaGenerica(@RequestParam("dataInicial") Timestamp dataInicial,
-												  @RequestParam("dataFinal") Timestamp dataFinal,
+	public List<OrdemServicoDTO> consultaGenerica(@RequestParam("dataInicial") String dataInicial,
+												  @RequestParam("dataFinal") String dataFinal,
 												  @RequestParam("nomePaciente") String nomePaciente,
 												  @RequestParam("nomeConvenio") String nomeConvenio,
 												  @RequestParam("nomePostoColeta") String nomePostoColeta,

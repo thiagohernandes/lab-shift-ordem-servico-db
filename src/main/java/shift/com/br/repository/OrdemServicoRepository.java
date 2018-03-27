@@ -34,7 +34,7 @@ public interface OrdemServicoRepository extends JpaRepository<OrdemServico, Inte
 	 * @since 24-03-2018
 	 * */
 	@Query(value=   " select 	os.id as numeroOrdemServico,  " + 
-			"		os.`data` as dataCadastroOS,  " + 
+			"		DATE_FORMAT(os.`data`,'%d/%m/%Y') as dataCadastroOS,  " + 
 			"		os.id_convenio as idConvenio,  " + 
 			"		os.id_medico as idMedico,  " + 
 			"		os.id_paciente as idPaciente,  " + 
