@@ -1,7 +1,5 @@
 package shift.com.br.dto;
 
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -17,7 +15,7 @@ public class PacienteDTO {
 	private Integer codigoPaciente;
 	private String nomePaciente;
 	private String sexoPaciente;
-	private Date dataNascimento;
+	private String dataNascimentoPaciente;
 	private String enderecoPaciente;
 	
 	public PacienteDTO() {
@@ -25,11 +23,11 @@ public class PacienteDTO {
 	}
 	
 	public PacienteDTO(Integer codigoPaciente,String nomePaciente, String sexoPaciente, 
-					   Date dataNascimento, String enderecoPaciente) {
+					   String dataNascimentoPaciente, String enderecoPaciente) {
 		this.codigoPaciente = codigoPaciente;
 		this.nomePaciente = nomePaciente;
 		this.sexoPaciente = sexoPaciente;
-		this.dataNascimento = dataNascimento;
+		this.dataNascimentoPaciente = dataNascimentoPaciente;
 		this.enderecoPaciente = enderecoPaciente;		
 	}
 
@@ -57,12 +55,12 @@ public class PacienteDTO {
 		this.sexoPaciente = sexoPaciente;
 	}
 
-	public Date getDataNascimento() {
-		return dataNascimento;
+	public String getDataNascimentoPaciente() {
+		return dataNascimentoPaciente;
 	}
 
-	public void setDataNascimento(Date dataNascimento) {
-		this.dataNascimento = dataNascimento;
+	public void setDataNascimentoPaciente(String dataNascimentoPaciente) {
+		this.dataNascimentoPaciente = dataNascimentoPaciente;
 	}
 
 	public String getEnderecoPaciente() {

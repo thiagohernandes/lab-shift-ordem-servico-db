@@ -45,6 +45,18 @@ public class MedicoRepositoryTest {
 	}
 	
 	/**
+	 * Consulta médicos e respectivas especialidades
+	 * @author Thiago Hernandes de Souza
+	 * @since 29-03-2018
+	 * */
+	@Test
+	public void consultaMedicosEspecialidades(){
+		List<Object> consulta = medicoRepository.consultaMedicosEspecialidades();
+		assertNotNull(consulta);
+		assertTrue(!consulta.isEmpty());
+	}
+	
+	/**
 	 * Persistir Médico
 	 * @author Thiago Hernandes de Souza
 	 * @since 25-03-2018

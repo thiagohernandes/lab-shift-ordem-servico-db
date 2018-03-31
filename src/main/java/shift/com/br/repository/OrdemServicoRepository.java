@@ -1,8 +1,10 @@
 package shift.com.br.repository;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -59,7 +61,7 @@ public interface OrdemServicoRepository extends JpaRepository<OrdemServico, Inte
 			"inner join tbl_cidade cic on cic.id = bac.id_cidade " + 
 			"where " + 
 			"	1 = 1 " + 
-			"	and os.`data` between :pDataInicial and :pDataFinal " + 
+			"	and DATE_FORMAT(os.`data`,'%Y-%m-%d') between :pDataInicial and :pDataFinal " + 
 			"	and pa.nome like :pNomePaciente " + 
 			"	and co.nome like :pNomeConvenio " + 
 			"	and pc.nome like :pNomePostoColeta " + 
@@ -78,5 +80,26 @@ public interface OrdemServicoRepository extends JpaRepository<OrdemServico, Inte
 											  @Param("pNomeEspecialidade") String nomeEspecialidade,
 											  @Param("pageLimit") int pageLimit, 
 										      @Param("pageNumber") int pageNumber);
+	
+	/**
+	 * Atualiza Ordem de Serviço
+	 * @since 31-03-2018
+	 * @author Thiago Hernandes de Souza
+	 * @param data, paciente, convenio, posto de coleta, médico e ordem de serviço
+	 * */
+	@Modifying
+	@Query(value=   " update tbl_ordem_servico set `data` = :pData," + 
+			"			 id_paciente = :pIdPaciente, " + 
+			"			 id_convenio = :pIdConvenio, " + 
+			"			 id_posto_coleta = :pIdPostoColeta, " + 
+			"			 id_medico = :pIdMedico " + 
+			"	where id = :pIdOrdemServico", nativeQuery=true)
+	public void updateOrdemServico(@Param("pData") Timestamp pData,
+								   @Param("pIdPaciente") Integer pIdPaciente,
+								   @Param("pIdConvenio") Integer pIdConvenio,
+								   @Param("pIdPostoColeta") Integer pIdPostoColeta,
+								   @Param("pIdMedico") Integer pIdMedico,
+								   @Param("pIdOrdemServico") Integer pIdOrdemServico);
+	
 	
 }

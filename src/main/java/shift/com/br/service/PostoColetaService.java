@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import shift.com.br.domain.PostoColeta;
 import shift.com.br.dto.PostoColetaDTO;
 import shift.com.br.repository.PostoColetaRepository;
 
@@ -26,6 +27,17 @@ public class PostoColetaService {
 	/** 
 	 * Consulta de todos os postos de coleta
 	 * @author Thiago Hernandes de Souza
+	 * @return lista de postos de coleta
+	 * @since 25-03-2018
+	 * */
+	public List<PostoColeta> consultaPostoColeta() {
+		return postoColetaRepository.findAll();
+	}
+	
+	/** 
+	 * Consulta de todos os postos de coleta por nome
+	 * @author Thiago Hernandes de Souza
+	 * @param nome do posto de coleta
 	 * @return lista de postos de coleta
 	 * @since 25-03-2018
 	 * */

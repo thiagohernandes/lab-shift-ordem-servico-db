@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import shift.com.br.domain.PostoColeta;
 import shift.com.br.dto.PostoColetaDTO;
 import shift.com.br.service.PostoColetaService;
 
@@ -27,12 +28,24 @@ public class PostoColetaController {
 	/** 
 	 * Consulta/controller postos de coleta por nome
 	 * @author Thiago Hernandes de Souza
-	 * @return lista com os pacientes
+	 * @return lista com os postos de coleta
 	 * @since 25-03-2018
 	 * */
-	@GetMapping(value="/consulta/{pNome}")
-	public List<PostoColetaDTO> consultaPostosColetaPorNome(@PathVariable("pNome") String pNome){
-		return postoColetaService.consultaPostoColetaPorNome("%"+pNome+"%");
+	@GetMapping(value="/consulta")
+	public List<PostoColetaDTO> consultaPostosColetaPorNome(){
+		return postoColetaService.consultaPostoColetaPorNome("%");
 	}
+	
+	/** 
+	 * Consulta/controller postos de coleta
+	 * @author Thiago Hernandes de Souza
+	 * @return lista com os postos de coleta
+	 * @since 29-03-2018
+	 * */
+	@GetMapping(value="/todos")
+	public List<PostoColeta> consultaPostosColeta(){
+		return postoColetaService.consultaPostoColeta();
+	}
+	
 	
 }

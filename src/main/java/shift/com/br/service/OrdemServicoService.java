@@ -1,6 +1,5 @@
 package shift.com.br.service;
 
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +35,22 @@ public class OrdemServicoService {
 	 * */
 	public OrdemServico salvar(OrdemServico ordemServico) {
 		return ordemServicoRepository.save(ordemServico);
+	}
+	
+	/** 
+	 * Update/persistir/service OrdemServico
+	 * @author Thiago Hernandes de Souza
+	 * @param dados ordem de serviço
+	 * @throws ParseException 
+	 * @since 31-03-2018
+	 * */
+	public void alterar(Integer id, OrdemServico ordemServico) throws ParseException {
+		ordemServicoRepository.updateOrdemServico(new UtilShift().trataDataTemporal(ordemServico.getData().getTime()),
+				  ordemServico.getPaciente().getId(),
+				  ordemServico.getConvenio().getId(),
+				  ordemServico.getPostoColeta().getId(),
+				  ordemServico.getMedico().getId(), 
+				  id);
 	}
 	
 	/** 
@@ -81,8 +96,10 @@ public class OrdemServicoService {
 		List<Object> listaOrdensServico = ordemServicoRepository.consultaOrdensServico(
 																	dataInicial,
 																	dataFinal,
-																	"%"+nomePaciente+"%","%"+nomeConvenio+"%",
-																	"%"+nomePostoColeta+"%","%"+nomeMedico+"%",
+																	"%"+nomePaciente+"%",
+																	"%"+nomeConvenio+"%",
+																	"%"+nomePostoColeta+"%",
+																	"%"+nomeMedico+"%",
 																	"%"+nomeEspecialidade+"%",pageLimit,pageNumber);
 		List<OrdemServicoDTO> retornoConsulta = new ArrayList<>();
 		
