@@ -1,6 +1,5 @@
 package shift.com.br.service;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import shift.com.br.dto.PacienteDTO;
 import shift.com.br.repository.PacienteRepository;
-import shift.com.br.util.UtilShift;
 
 /** 
  * Service  JPA - Paciente
@@ -43,14 +41,11 @@ public class PacienteService {
 				pacienteDTO = new PacienteDTO(Integer.valueOf(row[0].toString()),
 													  row[1].toString(),
 													  row[2].toString(),
-		 											  new UtilShift().stringObjToDate(row[3].toString()),
+		 											  row[3].toString(),
 		 											  row[4].toString());
 				retornoConsulta.add(pacienteDTO);
 			} catch (NumberFormatException e) {
 				System.err.println("Problemas na formatação de dados");
-				e.printStackTrace();
-			} catch (ParseException e) {
-				System.err.println("Problemas ao realizar o parse de dados");
 				e.printStackTrace();
 			}
 			 

@@ -1,7 +1,5 @@
 package shift.com.br.dto;
 
-import java.sql.Timestamp;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -15,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class OrdemServicoDTO {
 	
 	private Integer numeroOrdemServico;
-	private Timestamp dataCadastroOS;
+	private String dataCadastroOS;
 	private int idConvenio;
 	private int idMedico;
 	private int idPaciente;
@@ -32,7 +30,7 @@ public class OrdemServicoDTO {
 		
 	}
 	
-	public OrdemServicoDTO(Integer numeroOrdemServico, Timestamp dataCadastroOS, int idConvenio,
+	public OrdemServicoDTO(Integer numeroOrdemServico, String dataCadastroOS, int idConvenio,
 						   int idMedico, int idPaciente, int idPostoColeta, String nomePaciente,
 						   String nomeConvenio, String nomePostoColeta, String nomeMedico, 
 						   String nomeEspecialidade, String cidadePaciente, String cidadeColeta) {
@@ -59,11 +57,11 @@ public class OrdemServicoDTO {
 		this.numeroOrdemServico = numeroOrdemServico;
 	}
 
-	public Timestamp getDataCadastroOS() {
+	public String getDataCadastroOS() {
 		return dataCadastroOS;
 	}
 
-	public void setDataCadastroOS(Timestamp dataCadastroOS) {
+	public void setDataCadastroOS(String dataCadastroOS) {
 		this.dataCadastroOS = dataCadastroOS;
 	}
 

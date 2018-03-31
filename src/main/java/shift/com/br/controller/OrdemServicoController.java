@@ -1,6 +1,5 @@
 package shift.com.br.controller;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import shift.com.br.domain.OrdemServico;
 import shift.com.br.dto.OrdemServicoDTO;
 import shift.com.br.service.OrdemServicoService;
+import shift.com.br.util.UtilShift;
 
 /** 
  * REST Controller Ordem de Serviço
@@ -43,6 +43,7 @@ public class OrdemServicoController {
 	@ResponseBody
 	@PostMapping("/nova")
 	public OrdemServico novo(@RequestBody OrdemServico ordemServico) {
+		ordemServico.setData(new UtilShift().trataDataTemporal(ordemServico.getData().getTime()));
 		return ordemServicoService.salvar(ordemServico);
 	}
 	
@@ -63,12 +64,13 @@ public class OrdemServicoController {
 	 * @param id ordem de serviço
 	 * @param dados ordem de serviço
 	 * @return OrdemServico
+	 * @throws java.text.ParseException 
 	 * @since 25-03-2018
 	 * */
 	@ResponseBody
 	@PutMapping(value="/alterar/{id}")
-	public OrdemServico alterar(@PathVariable("id") Integer id, @RequestBody OrdemServico ordemServico ) {
-		return ordemServicoService.salvar(ordemServico);
+	public void alterar(@PathVariable("id") Integer id, @RequestBody OrdemServico ordemServico ) throws java.text.ParseException {
+		ordemServicoService.alterar(id,ordemServico);
 	}
 	
 	/** 
@@ -99,8 +101,8 @@ public class OrdemServicoController {
 	 * @since 24-03-2018
 	 * */
 	@GetMapping(value="/consulta/{pageLimit}/{pageNumber}")
-	public List<OrdemServicoDTO> consultaGenerica(@RequestParam("dataInicial") Timestamp dataInicial,
-												  @RequestParam("dataFinal") Timestamp dataFinal,
+	public List<OrdemServicoDTO> consultaGenerica(@RequestParam("dataInicial") String dataInicial,
+												  @RequestParam("dataFinal") String dataFinal,
 												  @RequestParam("nomePaciente") String nomePaciente,
 												  @RequestParam("nomeConvenio") String nomeConvenio,
 												  @RequestParam("nomePostoColeta") String nomePostoColeta,

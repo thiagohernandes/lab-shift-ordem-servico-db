@@ -28,7 +28,7 @@ public interface PacienteRepository extends JpaRepository<Paciente, Integer> {
 	@Query(value=   " select 	pa.id as codigoPaciente, "+
 					"		pa.nome as nomePaciente, "+
 					"		pa.sexo as sexoPaciente, "+
-					"		pa.data_nascimento as dataNascimento, "+
+					"		DATE_FORMAT(pa.data_nascimento,'%d/%m/%Y') as dataNascimentoPaciente, "+
 					"		CONCAT(pa.endereco,', ',ci.nome,' - ',ci.uf) as enderecoPaciente "+
 					" from tbl_paciente pa "+
 					" inner join tbl_bairro ba on ba.id = pa.id_bairro "+

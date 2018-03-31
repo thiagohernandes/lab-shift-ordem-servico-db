@@ -57,7 +57,7 @@ public class OrdemServicoRepositoryTest {
 													 pacienteRepository.findOne(1),convenioRepository.findOne(1),
 													 postoColetaRepository.findOne(1),medicoRepository.findOne(1)));
 		
-		List<Object> consulta = ordemServicoRepository.consultaOrdensServico("2018-01-01 00:00:00", "2018-01-01 00:00:00", 
+		List<Object> consulta = ordemServicoRepository.consultaOrdensServico("2018-01-01", "2018-01-01", 
 																			 ordemServico.getPaciente().getNome(),
 																			 ordemServico.getConvenio().getNome(), 
 																			 ordemServico.getPostoColeta().getNome(),

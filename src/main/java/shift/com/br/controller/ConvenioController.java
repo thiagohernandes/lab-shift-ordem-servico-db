@@ -24,12 +24,12 @@ public class ConvenioController {
 	ConvenioService convenioService;
 	
 	/** 
-	 * Consulta/controller postos de coleta por nome
+	 * Consulta/controller postos de coleta - genérica
 	 * @author Thiago Hernandes de Souza
 	 * @return lista com os convênios
 	 * @since 25-03-2018
 	 * */
-	@GetMapping(value="/consulta")
+	@GetMapping(value="/todos")
 	public List<Convenio> todos(){
 		return convenioService.consulta();
 	}

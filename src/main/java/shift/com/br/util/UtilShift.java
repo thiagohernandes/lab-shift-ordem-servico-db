@@ -71,6 +71,31 @@ public class UtilShift {
 	}
 	
 	/**
+	 * Conversão de date para string format yyyy-MM-dd
+	 * @author Thiago Hernandes de Souza
+	 * @since 27-03-2018
+	 * @param date
+	 * @return string format yyyy-MM-dd
+	 * */
+	public String dateToString(Date data) throws ParseException {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		return formatter.format(data);
+	}
+	
+	/**
+	 * Ajuste de data - temporal
+	 * @author Thiago Hernandes de Souza
+	 * @since 31-03-2018
+	 * @param long
+	 * @return java.sql.Timestamp
+	 * */
+	public java.sql.Timestamp trataDataTemporal(long data) {
+		long hours24 = 24L * 60L * 60L * 1000L;
+		return new java.sql.Timestamp(data + hours24);
+	}
+	
+	
+	/**
 	 * Load de arquivo SQL noa path resources
 	 * @author Thiago Hernandes de Souza
 	 * @since 25-03-2018

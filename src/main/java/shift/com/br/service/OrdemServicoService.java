@@ -1,6 +1,5 @@
 package shift.com.br.service;
 
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +38,22 @@ public class OrdemServicoService {
 	}
 	
 	/** 
+	 * Update/persistir/service OrdemServico
+	 * @author Thiago Hernandes de Souza
+	 * @param dados ordem de serviço
+	 * @throws ParseException 
+	 * @since 31-03-2018
+	 * */
+	public void alterar(Integer id, OrdemServico ordemServico) throws ParseException {
+		ordemServicoRepository.updateOrdemServico(new UtilShift().trataDataTemporal(ordemServico.getData().getTime()),
+				  ordemServico.getPaciente().getId(),
+				  ordemServico.getConvenio().getId(),
+				  ordemServico.getPostoColeta().getId(),
+				  ordemServico.getMedico().getId(), 
+				  id);
+	}
+	
+	/** 
 	 * Get/service OrdemServico
 	 * @author Thiago Hernandes de Souza
 	 * @param id da ordem de serviço
@@ -73,16 +88,18 @@ public class OrdemServicoService {
 	 * @return lista com as ordens de serviço
 	 * @since 24-03-2018
 	 * */
-	public List<OrdemServicoDTO> consultaOrdensServico(Timestamp dataInicial, Timestamp dataFinal, String nomePaciente,
+	public List<OrdemServicoDTO> consultaOrdensServico(String dataInicial, String dataFinal, String nomePaciente,
 													   String nomeConvenio, String nomePostoColeta, String nomeMedico,
 													   String nomeEspecialidade,int pageLimit, int pageNumber) 
 													   throws NumberFormatException, ParseException{
 		
 		List<Object> listaOrdensServico = ordemServicoRepository.consultaOrdensServico(
-																	new UtilShift().timeStampToString(dataInicial),
-																	new UtilShift().timeStampToString(dataFinal),
-																	"%"+nomePaciente+"%","%"+nomeConvenio+"%",
-																	"%"+nomePostoColeta+"%","%"+nomeMedico+"%",
+																	dataInicial,
+																	dataFinal,
+																	"%"+nomePaciente+"%",
+																	"%"+nomeConvenio+"%",
+																	"%"+nomePostoColeta+"%",
+																	"%"+nomeMedico+"%",
 																	"%"+nomeEspecialidade+"%",pageLimit,pageNumber);
 		List<OrdemServicoDTO> retornoConsulta = new ArrayList<>();
 		
@@ -91,7 +108,7 @@ public class OrdemServicoService {
 			 OrdemServicoDTO ordemServicoDTO;
 			try {
 				ordemServicoDTO = new OrdemServicoDTO(Integer.valueOf(row[0].toString()),
-						 											   new UtilShift().stringObjToTimestamp(row[1].toString()),
+						 											   row[1].toString(),
 						 											   Integer.parseInt(row[2].toString()),
 						 											   Integer.parseInt(row[3].toString()),
 						 											   Integer.parseInt(row[4].toString()),
@@ -103,10 +120,7 @@ public class OrdemServicoService {
 			} catch (NumberFormatException e) {
 				System.err.println("Problemas na formatação de dados");
 				e.printStackTrace();
-			} catch (ParseException e) {
-				System.err.println("Problemas ao realizar o parse de dados");
-				e.printStackTrace();
-			}
+			} 
 			 
 		});
 		return retornoConsulta;
